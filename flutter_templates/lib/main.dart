@@ -34,7 +34,7 @@ class MyApp extends ConsumerWidget {
               if (user == null) {
                 return const LandingScreen();
               }
-              return const HomePage();
+              return const DisasterScreen();
             },
             error: (err, trace) {
               return ErrorScreen(
