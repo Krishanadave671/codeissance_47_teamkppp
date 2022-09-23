@@ -29,24 +29,29 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  carousel_slider: ^4.1.1
   cloud_firestore: ^3.4.9
   country_picker: ^2.0.16
   cupertino_icons: ^1.0.2
+  dartz: ^0.10.1
+  fab_circular_menu: ^1.0.2
   firebase_auth: ^3.10.0
   firebase_core: ^1.23.0
   firebase_storage: ^10.3.9
   flutter:
     sdk: flutter
+  flutter_polyline_points: ^1.0.0
+  flutter_rating_bar: ^4.0.1
   flutter_riverpod: ^1.0.4
   geolocator: ^9.0.2
+  google_maps_flutter: ^2.2.0
+  http: ^0.13.5
   image_picker: ^0.8.5+3
   json_annotation: ^4.7.0
   json_serializable: ^6.4.0
   location: ^4.4.0
   place_picker: ^0.9.19
   url_launcher: ^6.1.5
-  carousel_slider: ^4.1.1
-  http: ^0.13.5
 
 dev_dependencies:
   flutter_lints: ^2.0.0
