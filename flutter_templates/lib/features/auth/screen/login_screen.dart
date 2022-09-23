@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_templates/common/utils/colors.dart';
 import 'package:flutter_templates/common/utils/utils.dart';
 import 'package:flutter_templates/common/widgets/buttons.dart';
+import 'package:flutter_templates/features/auth/controller/auth_controller.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
   static const routeName = '/login-screen';
@@ -36,9 +37,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   void sendPhoneNumber() {
     String phoneNumber = phoneController.text.trim();
     if (country != null && phoneNumber.isNotEmpty) {
-      // ref
-      //     .read(authControllerProvider)
-      //     .signInWithPhone(context, '+${country!.phoneCode}$phoneNumber');
+      ref
+          .read(authControllerProvider)
+          .signInWithPhone(context, '+${country!.phoneCode}$phoneNumber');
     } else {
       showSnackBar(context: context, content: 'Fill out all the fields');
     }
@@ -49,10 +50,10 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
+      backgroundColor: backgroundColor,
       appBar: AppBar(
         title: const Text('Enter your phone number'),
         elevation: 0,
-        backgroundColor: backgroundColor,
       ),
       body: SingleChildScrollView(
         child: Padding(
