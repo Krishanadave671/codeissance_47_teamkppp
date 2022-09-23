@@ -1,10 +1,40 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:place_picker/entities/location_result.dart';
+import 'package:place_picker/widgets/place_picker.dart';
 
 import 'package:url_launcher/url_launcher.dart' as UrlLauncher;
-import 'package:url_launcher/url_launcher_string.dart';
 
-class Infoscreen extends StatelessWidget {
+class Infoscreen extends StatefulWidget {
   const Infoscreen({Key? key}) : super(key: key);
+
+  @override
+  State<Infoscreen> createState() => _InfoscreenState();
+}
+
+class _InfoscreenState extends State<Infoscreen> {
+  var _latitude;
+  var _longitude;
+  void initState() {
+    super.initState();
+  }
+
+  void showPlacePicker() async {
+    LocationResult result = await Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) =>
+            PlacePicker("AIzaSyClwDKfzGV_7ICoib-lk2rH0iw5IlKW5Lw"),
+      ),
+    );
+
+    print(result.latLng!.latitude.toString());
+    print(result.latLng!.longitude.toString());
+    print(result.formattedAddress);
+    setState(() {
+      _latitude = result.latLng!.latitude;
+      _longitude = result.latLng!.longitude;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,9 +52,22 @@ class Infoscreen extends StatelessWidget {
               ),
               titleword: "Email Department",
               subtitle: "Email queries to department"),
+          ElevatedButton(
+              onPressed: () async {
+                showPlacePicker();
+                await addGeoPoint();
+              },
+              child: Text('Location'))
         ],
       ),
     );
+  }
+
+  Future<DocumentReference?> addGeoPoint() async {
+    GeoPoint point = GeoPoint(_latitude, _longitude);
+    return FirebaseFirestore.instance
+        .collection('disaster')
+        .add({'latitude': point.latitude, 'longitude': point.longitude});
   }
 }
 
@@ -71,9 +114,6 @@ class ListEmail extends StatelessWidget {
                   style: TextStyle(
                       color: Colors.black, fontWeight: FontWeight.bold),
                 ),
-
-                // subtitle: Text("Intermediate", style: TextStyle(color: Colors.white)),
-
                 subtitle: Row(
                   children: <Widget>[
                     Text(subtitle, style: TextStyle(color: Colors.black))
