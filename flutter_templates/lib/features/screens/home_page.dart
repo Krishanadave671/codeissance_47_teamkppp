@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_templates/common/utils/colors.dart';
+import 'package:flutter_templates/components/doctor_card.dart';
 import 'package:flutter_templates/features/screens/screen/disasterscreen.dart';
 
 class HomePage extends ConsumerStatefulWidget {
@@ -209,11 +210,42 @@ class _HomePageState extends ConsumerState<HomePage> {
               child: Align(
                 alignment: Alignment.topLeft,
                 child: Text(
-                  'Recent',
+                  'Department',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
               ),
             ),
+            SizedBox(
+              height: 20,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: DoctorCard("Share to family ", "Let's rescue from fire",
+                  "assets/images/family.png", Colors.green),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: DoctorCard(
+                  "Medical Department",
+                  "Let's move immediately to patient",
+                  "assets/images/doctor1.png",
+                  Colors.red),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: DoctorCard("Police department", "Let's rescue from fire",
+                  "assets/images/police-badge.png", Colors.yellow),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: DoctorCard("Disaster department", "Let's rescue from fire",
+                  "assets/images/flood.png", Colors.blue),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: DoctorCard("Fire department", "Let's rescue from fire",
+                  "assets/images/fire-station.png", Colors.orange),
+            )
           ],
         ),
       ),
