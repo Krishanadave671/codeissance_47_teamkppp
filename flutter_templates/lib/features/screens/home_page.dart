@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_templates/common/utils/colors.dart';
+import 'package:flutter_templates/features/screens/screen/disasterscreen.dart';
 
 class HomePage extends ConsumerStatefulWidget {
   static const routeName = '/home-page';
@@ -41,157 +42,181 @@ class _HomePageState extends ConsumerState<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          elevation: 0,
-          leading: IconButton(
-              onPressed: () {},
-              icon: Icon(
-                Icons.person_outline_rounded,
-                color: Colors.black,
-              )),
-          actions: [
-            IconButton(
-                onPressed: () {},
-                icon: Icon(
-                  Icons.notifications,
-                  color: Colors.black,
-                ))
-          ],
-        ),
+        // appBar: AppBar(
+        //   backgroundColor: Colors.white,
+        //   elevation: 0,
+        //   leading: IconButton(
+        //       onPressed: () {},
+        //       icon: Icon(
+        //         Icons.person_outline_rounded,
+        //         color: Colors.black,
+        //       )),
+        //   actions: [
+        //     IconButton(
+        //         onPressed: () {},
+        //         icon: Icon(
+        //           Icons.notifications,
+        //           color: Colors.black,
+        //         ))
+        //   ],
+        // ),
         body: SafeArea(
-          child: SingleChildScrollView(
-            child: Column(
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            Row(
               children: [
-                SizedBox(
-                  height: 30,
-                ),
-                Row(
-                  children: [
-                    Column(
-                      children: [
-                        Container(
-                          width: MediaQuery.of(context).size.width,
-                          height: 30,
-                          child: CarouselSlider(
-                            items: txtList
-                                .map((item) => Text(
-                                      item,
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold),
-                                    ))
-                                .toList(),
-                            options: CarouselOptions(
-                                autoPlay: false,
-                                aspectRatio: 2.0,
-                                enlargeCenterPage: true,
-                                viewportFraction: 1),
-                          ),
-                        ),
-                        Container(
-                          width: MediaQuery.of(context).size.width,
-                          height: 230,
-                          child: CarouselSlider(
-                            items: imgList
-                                .map((item) => GestureDetector(
-                                      child: ClipRRect(
-                                        borderRadius: BorderRadius.circular(20),
-                                        child: Image.network(
-                                          item,
-                                          fit: BoxFit.cover,
-                                        ),
-                                      ),
-                                    ))
-                                .toList(),
-                            options: CarouselOptions(
-                                autoPlay: false,
-                                aspectRatio: 2.0,
-                                enlargeCenterPage: true,
-                                viewportFraction: 1),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 30,
-                ),
-                Text(
-                  'Categories',
-                  style: TextStyle(fontSize: 20),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Row(
-                  children: [
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 18.0),
-                        child: SizedBox(
-                          height: 110,
-                          child: ListView.separated(
-                              primary: false,
-                              shrinkWrap: true,
-                              scrollDirection: Axis.horizontal,
-                              itemCount: 4,
-                              separatorBuilder: (context, index) => Divider(
-                                    indent: 16,
-                                  ),
-                              itemBuilder: (context, index) {
-                                return Container(
-                                  width: 110,
-                                  height: 40,
-                                  clipBehavior: Clip.hardEdge,
-                                  padding: EdgeInsets.only(top: 14),
-                                  decoration: BoxDecoration(
-                                    color: backgroundColor,
-                                    borderRadius: BorderRadius.circular(16),
-                                  ),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Padding(
-                                        padding: EdgeInsets.only(
-                                          left: 20,
-                                        ),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          children: [
-                                            Icon(
-                                              icon[index],
-                                              size: 36,
-                                              color: Colors.blue,
-                                            ),
-                                            SizedBox(
-                                              height: 14,
-                                            ),
-                                            Text(
-                                              text[index],
-                                              style: TextStyle(
-                                                color: Colors.black,
-                                                fontWeight: FontWeight.w700,
-                                                fontSize: 14,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                );
-                              }),
-                        ),
-                      ),
-                    ),
-                  ],
-                )
+                // Column(
+                //   children: [
+                //     Container(
+                //       width: MediaQuery.of(context).size.width,
+                //       height: 30,
+                //       child: CarouselSlider(
+                //         items: txtList
+                //             .map((item) => Text(
+                //                   item,
+                //                   style: TextStyle(
+                //                       fontWeight: FontWeight.bold),
+                //                 ))
+                //             .toList(),
+                //         options: CarouselOptions(
+                //             autoPlay: false,
+                //             aspectRatio: 2.0,
+                //             enlargeCenterPage: true,
+                //             viewportFraction: 1),
+                //       ),
+                //     ),
+                //     Container(
+                //       width: MediaQuery.of(context).size.width,
+                //       height: 230,
+                //       child: CarouselSlider(
+                //         items: imgList
+                //             .map((item) => GestureDetector(
+                //                   child: ClipRRect(
+                //                     borderRadius: BorderRadius.circular(20),
+                //                     child: Image.network(
+                //                       item,
+                //                       fit: BoxFit.cover,
+                //                     ),
+                //                   ),
+                //                 ))
+                //             .toList(),
+                //         options: CarouselOptions(
+                //             autoPlay: false,
+                //             aspectRatio: 2.0,
+                //             enlargeCenterPage: true,
+                //             viewportFraction: 1),
+                //       ),
+                //     ),
+                //   ],
+                // ),
               ],
             ),
-          ),
-        ));
+            // SizedBox(
+            //   height: 30,
+            // ),
+            Padding(
+              padding: const EdgeInsets.only(left: 16.0),
+              child: Align(
+                alignment: Alignment.topLeft,
+                child: Text(
+                  'Categories',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 18.0),
+                    child: SizedBox(
+                      height: 110,
+                      child: ListView.separated(
+                          primary: false,
+                          shrinkWrap: true,
+                          scrollDirection: Axis.horizontal,
+                          itemCount: 4,
+                          separatorBuilder: (context, index) => Divider(
+                                indent: 16,
+                              ),
+                          itemBuilder: (context, index) {
+                            return GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const DisasterScreen()));
+                              },
+                              child: Container(
+                                width: 110,
+                                height: 40,
+                                clipBehavior: Clip.hardEdge,
+                                padding: EdgeInsets.only(top: 14),
+                                decoration: BoxDecoration(
+                                  color: backgroundColor,
+                                  borderRadius: BorderRadius.circular(16),
+                                ),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                        left: 20,
+                                      ),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          Icon(
+                                            icon[index],
+                                            size: 36,
+                                            color: Colors.blue,
+                                          ),
+                                          SizedBox(
+                                            height: 14,
+                                          ),
+                                          Text(
+                                            text[index],
+                                            style: TextStyle(
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.w700,
+                                              fontSize: 14,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            );
+                          }),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 16.0),
+              child: Align(
+                alignment: Alignment.topLeft,
+                child: Text(
+                  'Recent',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    ));
   }
 }
