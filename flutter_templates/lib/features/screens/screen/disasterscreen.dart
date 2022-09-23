@@ -6,6 +6,7 @@ import 'package:flutter_templates/features/screens/screen/info_screen.dart';
 
 class DisasterScreen extends ConsumerStatefulWidget {
   static const routeName = '/disaster-screen';
+  // var _name ;
   const DisasterScreen({super.key});
 
   @override

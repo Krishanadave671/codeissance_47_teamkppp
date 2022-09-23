@@ -43,6 +43,7 @@ dependencies:
   flutter_polyline_points: ^1.0.0
   flutter_rating_bar: ^4.0.1
   flutter_riverpod: ^1.0.4
+  flutter_svg: ^1.1.5
   geolocator: ^9.0.2
   google_maps_flutter: ^2.2.0
   http: ^0.13.5
@@ -69,7 +70,7 @@ flutter:
   uses-material-design: true
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/
+    - assets/images/
   #   - images/a_dot_ham.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
