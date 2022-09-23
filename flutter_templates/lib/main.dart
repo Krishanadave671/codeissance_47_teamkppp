@@ -7,6 +7,7 @@ import 'package:flutter_templates/features/auth/controller/auth_controller.dart'
 import 'package:flutter_templates/features/auth/screen/login_screen.dart';
 import 'package:flutter_templates/features/landing/landing_screen.dart';
 import 'package:flutter_templates/features/screens/home_page.dart';
+import 'package:flutter_templates/features/screens/homepage1.dart';
 import 'package:flutter_templates/features/screens/screen/disasterscreen.dart';
 import 'package:flutter_templates/router.dart';
 import 'firebase_options.dart';
@@ -44,7 +45,5 @@ class MyApp extends ConsumerWidget {
             loading: () => const Loader(),
           ),
     );
-  }
-
-  // Login page
+  } // Login page
 }
