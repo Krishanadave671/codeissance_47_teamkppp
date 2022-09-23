@@ -3,6 +3,9 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_templates/features/screens/screen/info_screen.dart';
+import 'package:flutter_templates/features/screens/screen/reportformscreen.dart';
+import 'package:place_picker/entities/location_result.dart';
+import 'package:place_picker/widgets/place_picker.dart';
 
 class DisasterScreen extends ConsumerStatefulWidget {
   static const routeName = '/disaster-screen';
@@ -56,11 +59,12 @@ class _DisasterScreenState extends ConsumerState<DisasterScreen> {
               TabBarView(
             children: [
               Infoscreen(),
-              Container(
-                child: Center(
-                  child: Text("Report"),
-                ),
-              ),
+              // Container(
+              //   child: Center(
+              //     child: Text("Report"),
+              //   ),
+              // ),
+              ReportFormScreen()
             ],
           ),
         ),
