@@ -4,6 +4,7 @@ import 'package:flutter_templates/common/widgets/error.dart';
 import 'package:flutter_templates/features/auth/screen/login_screen.dart';
 import 'package:flutter_templates/features/auth/screen/otp_screen.dart';
 import 'package:flutter_templates/features/auth/screen/user_information_screen.dart';
+import 'package:flutter_templates/features/screens/home_page.dart';
 import 'package:flutter_templates/features/screens/screen/disasterscreen.dart';
 import 'package:flutter_templates/features/screens/screen/donationscreen.dart';
 import 'package:flutter_templates/features/screens/screen/homecrimescreen.dart';
@@ -35,6 +36,10 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case UserInformationScreen.routeName:
       return MaterialPageRoute(
           builder: (context) => const UserInformationScreen());
+    case HomePage.routeName:
+      return MaterialPageRoute(
+        builder: (context) => const UserInformationScreen(),
+      );
     default:
       return MaterialPageRoute(
         builder: (context) => const Scaffold(
