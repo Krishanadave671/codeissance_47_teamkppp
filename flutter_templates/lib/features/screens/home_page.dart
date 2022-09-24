@@ -8,6 +8,7 @@ import 'package:flutter_templates/components/doctor_card.dart';
 import 'package:flutter_templates/features/screens/screen/custom_marker.dart';
 import 'package:flutter_templates/features/screens/screen/disasterscreen.dart';
 import 'package:flutter_templates/features/screens/screen/donation.dart';
+import 'package:flutter_templates/features/screens/screen/donationscreen.dart';
 import 'package:flutter_templates/features/screens/screen/homecrimescreen.dart';
 import 'package:flutter_templates/features/screens/screen/mycredit_card.dart';
 import 'package:flutter_templates/features/screens/screen/report_screen.dart';
@@ -219,8 +220,8 @@ class _HomePageState extends ConsumerState<HomePage> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      Navigator.of(context).push(
-                          MaterialPageRoute(builder: (context) => GooglePay()));
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => DonationScreen()));
                     },
                     child: Padding(
                       padding: const EdgeInsets.only(left: 8.0, right: 8.0),

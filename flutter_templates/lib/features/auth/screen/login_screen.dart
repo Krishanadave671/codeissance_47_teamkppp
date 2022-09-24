@@ -53,7 +53,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     return Scaffold(
       backgroundColor: backgroundColor,
       appBar: AppBar(
-        title: const Text('Enter your phone number'),
+        title: const Text('Welcome to HelpAlert'),
         elevation: 0,
       ),
       body: SingleChildScrollView(
@@ -62,8 +62,16 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const Text('WhatsApp will need to verify your phone number.'),
+              const Text('HelpAlert will need to verify your phone number.'),
               const SizedBox(height: 10),
+              SvgPicture.asset(
+                'assets/images/welcome.svg',
+                width: 200,
+                height: 200,
+              ),
+              SizedBox(
+                height: 40,
+              ),
               TextButton(
                 onPressed: pickCountry,
                 child: const Text('Pick Country'),
@@ -84,10 +92,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   ),
                 ],
               ),
-              SvgPicture.asset(
-                'assets/images/welcome.svg',
-              ),
-              SizedBox(height: size.height * 0.6),
+              SizedBox(height: size.height * 0.3),
               SizedBox(
                 width: 90,
                 child: CustomButton(
