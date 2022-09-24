@@ -9,7 +9,6 @@ import 'package:place_picker/widgets/place_picker.dart';
 
 class DisasterScreen extends ConsumerStatefulWidget {
   static const routeName = '/disaster-screen';
-
   @override
   ConsumerState<DisasterScreen> createState() => _DisasterScreenState();
 }
@@ -56,15 +55,7 @@ class _DisasterScreenState extends ConsumerState<DisasterScreen> {
           },
           body: // tab page,
               TabBarView(
-            children: [
-              Infoscreen(),
-              // Container(
-              //   child: Center(
-              //     child: Text("Report"),
-              //   ),
-              // ),
-              ReportFormScreen()
-            ],
+            children: [Infoscreen(), ReportFormScreen()],
           ),
         ),
       ),

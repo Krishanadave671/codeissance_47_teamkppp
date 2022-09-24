@@ -7,7 +7,9 @@ import 'package:flutter_templates/common/utils/colors.dart';
 import 'package:flutter_templates/components/doctor_card.dart';
 import 'package:flutter_templates/features/screens/screen/custom_marker.dart';
 import 'package:flutter_templates/features/screens/screen/disasterscreen.dart';
+import 'package:flutter_templates/features/screens/screen/donation.dart';
 import 'package:flutter_templates/features/screens/screen/homecrimescreen.dart';
+import 'package:flutter_templates/features/screens/screen/mycredit_card.dart';
 import 'package:flutter_templates/features/screens/screen/report_screen.dart';
 
 class HomePage extends ConsumerStatefulWidget {
@@ -165,91 +167,103 @@ class _HomePageState extends ConsumerState<HomePage> {
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-                    child: Container(
-                      width: 130,
-                      height: 100,
-                      clipBehavior: Clip.hardEdge,
-                      padding: EdgeInsets.only(top: 14, left: 16),
-                      decoration: BoxDecoration(
-                        color: backgroundColor,
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.only(
-                              left: 20,
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Icon(
-                                  Icons.wallet_giftcard,
-                                  size: 36,
-                                  color: Colors.blue,
-                                ),
-                                SizedBox(
-                                  height: 14,
-                                ),
-                                Text(
-                                  'Gift Card',
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: 14,
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => MyCreditScore()));
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+                      child: Container(
+                        width: 130,
+                        height: 100,
+                        clipBehavior: Clip.hardEdge,
+                        padding: EdgeInsets.only(top: 14, left: 16),
+                        decoration: BoxDecoration(
+                          color: backgroundColor,
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.only(
+                                left: 20,
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Icon(
+                                    Icons.wallet_giftcard,
+                                    size: 36,
+                                    color: Colors.blue,
                                   ),
-                                ),
-                              ],
+                                  SizedBox(
+                                    height: 14,
+                                  ),
+                                  Text(
+                                    'Gift Card',
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-                    child: Container(
-                      width: 130,
-                      height: 100,
-                      clipBehavior: Clip.hardEdge,
-                      padding: EdgeInsets.only(top: 14, left: 22),
-                      decoration: BoxDecoration(
-                        color: backgroundColor,
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.only(
-                              left: 20,
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Icon(
-                                  Icons.attach_money_outlined,
-                                  size: 36,
-                                  color: Colors.blue,
-                                ),
-                                SizedBox(
-                                  height: 14,
-                                ),
-                                Text(
-                                  'Donate',
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: 14,
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context) => GooglePay()));
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+                      child: Container(
+                        width: 130,
+                        height: 100,
+                        clipBehavior: Clip.hardEdge,
+                        padding: EdgeInsets.only(top: 14, left: 22),
+                        decoration: BoxDecoration(
+                          color: backgroundColor,
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.only(
+                                left: 20,
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Icon(
+                                    Icons.attach_money_outlined,
+                                    size: 36,
+                                    color: Colors.blue,
                                   ),
-                                ),
-                              ],
+                                  SizedBox(
+                                    height: 14,
+                                  ),
+                                  Text(
+                                    'Donate',
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),
