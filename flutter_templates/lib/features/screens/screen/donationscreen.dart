@@ -43,7 +43,7 @@ class _DonationScreenState extends ConsumerState<DonationScreen> {
             children: [
               Expanded(
                   child: ListView.builder(
-                      itemCount: 6,
+                      itemCount: 5,
                       itemBuilder: (context, index) {
                         return Padding(
                             padding: const EdgeInsets.only(
