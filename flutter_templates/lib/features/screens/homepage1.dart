@@ -5,6 +5,7 @@ import 'package:flutter_templates/features/screens/home_page.dart';
 import 'package:flutter_templates/features/screens/screen/cameraimage.dart';
 import 'package:flutter_templates/features/screens/screen/custom_marker.dart';
 import 'package:flutter_templates/features/screens/screen/google_maps.dart';
+import 'package:flutter_templates/features/screens/screen/notificationscreen.dart';
 
 import '../../common/utils/utils.dart';
 import '../auth/controller/auth_controller.dart';
@@ -53,7 +54,9 @@ class _MobileLayoutScreenState extends ConsumerState<MobileLayoutScreen>
             IconButton(
               icon: const Icon(Icons.notification_important_rounded,
                   color: Colors.white),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, NotificationScreen.routeName);
+              },
             ),
             PopupMenuButton(
               icon: const Icon(
@@ -80,7 +83,7 @@ class _MobileLayoutScreenState extends ConsumerState<MobileLayoutScreen>
             indicatorColor: Colors.white,
             indicatorWeight: 4,
             labelColor: Colors.white,
-            unselectedLabelColor: Colors.grey,
+            unselectedLabelColor: Colors.black,
             labelStyle: const TextStyle(
               fontWeight: FontWeight.bold,
             ),
