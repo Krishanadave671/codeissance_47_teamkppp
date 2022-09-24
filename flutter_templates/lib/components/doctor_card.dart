@@ -18,9 +18,7 @@ class DoctorCard extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => DisasterScreen(
-              
-            ),
+            builder: (context) => DisasterScreen(),
           ),
         );
       },

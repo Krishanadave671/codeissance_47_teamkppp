@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_templates/features/screens/home_page.dart';
 import 'package:flutter_templates/features/screens/screen/disasterscreen.dart';
 import 'package:place_picker/entities/location_result.dart';
 import 'package:place_picker/widgets/place_picker.dart';
@@ -70,14 +71,30 @@ class _ReportFormScreenState extends State<ReportFormScreen> {
               SizedBox(
                 height: 20,
               ),
+              TextField(
+                readOnly: true,
+                onTap: () {
+                  showPlacePicker();
+                },
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12)),
+                    hintText: 'Location'),
+              ),
+              SizedBox(
+                height: 30,
+              ),
               ElevatedButton(
-                  onPressed: () async {
-                    showPlacePicker();
-                    await addGeoPoint();
-                    // Navigator.of(context).push(MaterialPageRoute(
-                    //     builder: (context) => DisasterScreen()));
+                  style: ElevatedButton.styleFrom(
+                      fixedSize: Size(150, 50), backgroundColor: Colors.red),
+                  onPressed: () {
+                    addGeoPoint();
+                    Navigator.pushReplacementNamed(context, HomePage.routeName);
                   },
-                  child: Text('Submit'))
+                  child: Text(
+                    'Submit',
+                    style: TextStyle(color: Colors.white, fontSize: 22),
+                  ))
             ],
           ),
         ),
