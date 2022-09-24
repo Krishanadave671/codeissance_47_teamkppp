@@ -38,7 +38,7 @@ class MyApp extends ConsumerWidget {
               if (user == null) {
                 return const LandingScreen();
               }
-              return GooglePay();
+              return MobileLayoutScreen();
             },
             error: (err, trace) {
               return ErrorScreen(

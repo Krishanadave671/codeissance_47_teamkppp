@@ -1,6 +1,7 @@
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_templates/common/utils/colors.dart';
 import 'package:flutter_templates/common/utils/utils.dart';
 import 'package:flutter_templates/common/widgets/buttons.dart';
@@ -82,6 +83,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     ),
                   ),
                 ],
+              ),
+              SvgPicture.asset(
+                'assets/images/welcome.svg',
               ),
               SizedBox(height: size.height * 0.6),
               SizedBox(
