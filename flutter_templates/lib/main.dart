@@ -1,3 +1,4 @@
+import 'package:custom_info_window/custom_info_window.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -8,7 +9,9 @@ import 'package:flutter_templates/features/auth/screen/login_screen.dart';
 import 'package:flutter_templates/features/landing/landing_screen.dart';
 import 'package:flutter_templates/features/screens/home_page.dart';
 import 'package:flutter_templates/features/screens/homepage1.dart';
+import 'package:flutter_templates/features/screens/screen/custom_marker.dart';
 import 'package:flutter_templates/features/screens/screen/disasterscreen.dart';
+import 'package:flutter_templates/features/screens/screen/google_maps.dart';
 import 'package:flutter_templates/router.dart';
 import 'firebase_options.dart';
 

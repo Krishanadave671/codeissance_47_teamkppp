@@ -1,132 +1,227 @@
-import 'dart:async';
+import 'dart:typed_data';
+import 'dart:ui' as ui;
 
-import 'package:fab_circular_menu/fab_circular_menu.dart';
+import 'package:custom_info_window/custom_info_window.dart';
 import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:place_picker/place_picker.dart';
+import 'package:flutter/services.dart';
 
-class GoogleMaps extends StatefulWidget {
-  GoogleMaps({Key? key}) : super(key: key);
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+
+class CustomMarkerInfoWindowScreen extends StatefulWidget {
+  const CustomMarkerInfoWindowScreen({Key? key}) : super(key: key);
 
   @override
-  State<GoogleMaps> createState() => _GoogleMapsState();
+  _CustomMarkerInfoWindowScreenState createState() =>
+      _CustomMarkerInfoWindowScreenState();
 }
 
-class _GoogleMapsState extends State<GoogleMaps> {
-  Completer<GoogleMapController> _controller = Completer();
-  // Text Editing Controllers
-  TextEditingController searchController = TextEditingController();
-  TextEditingController _originController = TextEditingController();
-  TextEditingController _destinationController = TextEditingController();
+class _CustomMarkerInfoWindowScreenState
+    extends State<CustomMarkerInfoWindowScreen> {
+  CustomInfoWindowController _customInfoWindowController =
+      CustomInfoWindowController();
+  final LatLng _latLng = LatLng(33.6844, 73.0479);
+  final double _zoom = 20.0;
+  Set<Marker> _markers = {};
 
-  Timer? _debounce;
-  // Markers set
-  Set<Marker> _markers = Set<Marker>();
-  Set<Marker> _markersDupe = Set<Marker>();
+  List<String> images = [
+    'images/car.png',
+    'images/marker.png',
+  ];
 
-  // Toggling Ui as we need
+  Uint8List? markerImage;
 
-  bool searchToggle = false;
-  bool radiusSlider = false;
-  bool getDirections = false;
-  bool pressedNear = false;
-  bool cardTapped = false;
-
-  static final CameraPosition _kGooglePlex = CameraPosition(
-    target: LatLng(37.42796133580664, -122.085749655962),
-    zoom: 14.4746,
-  );
+  Future<Uint8List> getBytesFromAsset(String path, int width) async {
+    ByteData data = await rootBundle.load(path);
+    ui.Codec codec = await ui.instantiateImageCodec(data.buffer.asUint8List(),
+        targetWidth: width);
+    ui.FrameInfo fi = await codec.getNextFrame();
+    return (await fi.image.toByteData(format: ui.ImageByteFormat.png))!
+        .buffer
+        .asUint8List();
+  }
 
   @override
-  Widget build(BuildContext context) {
-    final screenHeight = MediaQuery.of(context).size.height;
-    final screenWidth = MediaQuery.of(context).size.width;
+  void dispose() {
+    _customInfoWindowController.dispose();
+    super.dispose();
+  }
 
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Stack(
-              children: [
-                Container(
-                  height: screenHeight,
-                  width: screenWidth,
-                  child: GoogleMap(
-                    mapType: MapType.normal,
-                    initialCameraPosition: _kGooglePlex,
-                    onMapCreated: (GoogleMapController controller) {
-                      _controller.complete(controller);
-                    },
-                  ),
-                ),
-                searchToggle
-                    ? Padding(
-                        padding: EdgeInsets.fromLTRB(15, 40, 15, 40),
-                        child: Column(
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    loadData();
+  }
+  //Set<Marker> _markers = {};
+
+  loadData() async {
+    for (int i = 0; i < images.length; i++) {
+      print('name' + images[i].toString());
+      final Uint8List markerIcon =
+          await getBytesFromAsset(images[i].toString(), 100);
+
+      if (i == 1) {
+        _markers.add(Marker(
+            markerId: MarkerId('2'),
+            position: LatLng(33.6992, 72.9744),
+            icon: BitmapDescriptor.fromBytes(markerIcon),
+            onTap: () {
+              _customInfoWindowController.addInfoWindow!(
+                Column(
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        color: Colors.blue,
+                        borderRadius: BorderRadius.circular(4),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Container(
-                              height: 50,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10.0),
-                                color: Colors.white,
-                              ),
-                              child: TextFormField(
-                                controller: searchController,
-                                decoration: InputDecoration(
-                                    contentPadding: EdgeInsets.symmetric(
-                                        horizontal: 20.0, vertical: 15.0),
-                                    border: InputBorder.none,
-                                    hintText: 'Search',
-                                    suffixIcon: IconButton(
-                                      onPressed: () {
-                                        setState(() {
-                                          searchToggle = false;
-                                          searchController.text = '';
-                                        });
-                                      },
-                                      icon: Icon(Icons.close),
-                                    )),
-                              ),
+                            Icon(
+                              Icons.account_circle,
+                              color: Colors.white,
+                              size: 30,
+                            ),
+                            SizedBox(
+                              width: 8.0,
+                            ),
+                            Text(
+                              "I am here",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline6!
+                                  .copyWith(
+                                    color: Colors.white,
+                                  ),
                             )
                           ],
                         ),
-                      )
-                    : Container(),
-              ],
-            )
-          ],
-        ),
-      ),
-      floatingActionButton: FabCircularMenu(
-        alignment: Alignment.bottomLeft,
-        fabColor: Colors.blue.shade500,
-        fabOpenColor: Colors.red.shade100,
-        ringDiameter: 250.0,
-        ringWidth: 60.0,
-        ringColor: Colors.blue.shade50,
-        fabSize: 60.0,
-        children: [
-          IconButton(
-            onPressed: () {
-              setState(() {
-                searchToggle = true;
-                radiusSlider = false;
-                pressedNear = false;
-                cardTapped = false;
-                getDirections = false;
-              });
+                      ),
+                      width: double.infinity,
+                      height: double.infinity,
+                    ),
+
+                    // Triangle.isosceles(
+                    //   edge: Edge.BOTTOM,
+                    //   child: Container(
+                    //     color: Colors.blue,
+                    //     width: 20.0,
+                    //     height: 10.0,
+                    //   ),
+                    // ),
+                  ],
+                ),
+                LatLng(33.6992, 72.9744),
+              );
+            }));
+      } else {
+        _markers.add(Marker(
+            markerId: MarkerId(i.toString()),
+            position: LatLng(33.6844, 73.0479),
+            icon: BitmapDescriptor.fromBytes(markerIcon),
+            onTap: () {
+              _customInfoWindowController.addInfoWindow!(
+                Container(
+                  width: 300,
+                  height: 200,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    border: Border.all(color: Colors.grey),
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        width: 300,
+                        height: 100,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image: NetworkImage(
+                                  'https://images.pexels.com/photos/1566837/pexels-photo-1566837.jpeg?cs=srgb&dl=pexels-narda-yescas-1566837.jpg&fm=jpg'),
+                              fit: BoxFit.fitWidth,
+                              filterQuality: FilterQuality.high),
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(10.0),
+                          ),
+                          color: Colors.red,
+                        ),
+                      ),
+                      Padding(
+                        padding:
+                            const EdgeInsets.only(top: 10, left: 10, right: 10),
+                        child: Row(
+                          children: [
+                            SizedBox(
+                              width: 100,
+                              child: Text(
+                                'Beef Tacos',
+                                maxLines: 1,
+                                overflow: TextOverflow.fade,
+                                softWrap: false,
+                              ),
+                            ),
+                            const Spacer(),
+                            Text(
+                              '.3 mi.',
+                              // widget.data!.date!,
+                            )
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding:
+                            const EdgeInsets.only(top: 10, left: 10, right: 10),
+                        child: Text(
+                          'Help me finish these tacos! I got a platter from Costco and it’s too much.',
+                          maxLines: 2,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                LatLng(33.6844, 73.0479),
+              );
+            }));
+      }
+
+      setState(() {});
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // loadData() ;
+    return Scaffold(
+      body: Stack(
+        children: <Widget>[
+          GoogleMap(
+            onTap: (position) {
+              _customInfoWindowController.hideInfoWindow!();
             },
-            icon: Icon(Icons.search),
+            onCameraMove: (position) {
+              _customInfoWindowController.onCameraMove!();
+            },
+            onMapCreated: (GoogleMapController controller) async {
+              _customInfoWindowController.googleMapController = controller;
+            },
+            markers: _markers,
+            initialCameraPosition: CameraPosition(
+              target: _latLng,
+              zoom: _zoom,
+            ),
           ),
-          IconButton(
-            onPressed: () {
-              setState(() {});
-            },
-            icon: Icon(Icons.navigation),
-          )
+          CustomInfoWindow(
+            controller: _customInfoWindowController,
+            height: 200,
+            width: 300,
+            offset: 35,
+          ),
         ],
       ),
     );
-    ;
   }
 }
