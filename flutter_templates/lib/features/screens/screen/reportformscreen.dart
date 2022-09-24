@@ -1,23 +1,43 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_templates/features/auth/controller/auth_controller.dart';
+import 'package:flutter_templates/features/screens/home_page.dart';
 import 'package:flutter_templates/features/screens/screen/disasterscreen.dart';
+import 'package:flutter_templates/models/user_model.dart';
 import 'package:place_picker/entities/location_result.dart';
 import 'package:place_picker/widgets/place_picker.dart';
 
-class ReportFormScreen extends StatefulWidget {
+import '../../auth/repository/auth_repository.dart';
+
+class ReportFormScreen extends ConsumerStatefulWidget {
   const ReportFormScreen({super.key});
 
   @override
-  State<ReportFormScreen> createState() => _ReportFormScreenState();
+  ConsumerState<ReportFormScreen> createState() => _ReportFormScreenState();
 }
 
-class _ReportFormScreenState extends State<ReportFormScreen> {
+class _ReportFormScreenState extends ConsumerState<ReportFormScreen> {
+  late final FirebaseAuth auth;
+  late final FirebaseFirestore firestore;
   var _latitude;
   var _longitude;
   void initState() {
     super.initState();
+  }
+
+  Future<UserModel?> getCurrentUserData() async {
+    var userData =
+        await firestore.collection('users').doc(auth.currentUser?.uid).get();
+
+    UserModel? user;
+    if (userData.data() != null) {
+      user = UserModel.fromMap(userData.data()!);
+    }
+    return user;
   }
 
   void showPlacePicker() async {
@@ -70,14 +90,30 @@ class _ReportFormScreenState extends State<ReportFormScreen> {
               SizedBox(
                 height: 20,
               ),
+              TextField(
+                readOnly: true,
+                onTap: () {
+                  showPlacePicker();
+                },
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12)),
+                    hintText: 'Location'),
+              ),
+              SizedBox(
+                height: 30,
+              ),
               ElevatedButton(
-                  onPressed: () async {
-                    showPlacePicker();
-                    await addGeoPoint();
-                    // Navigator.of(context).push(MaterialPageRoute(
-                    //     builder: (context) => DisasterScreen()));
+                  style: ElevatedButton.styleFrom(
+                      fixedSize: Size(150, 50), backgroundColor: Colors.red),
+                  onPressed: () {
+                    addGeoPoint();
+                    Navigator.pushReplacementNamed(context, HomePage.routeName);
                   },
-                  child: Text('Submit'))
+                  child: Text(
+                    'Submit',
+                    style: TextStyle(color: Colors.white, fontSize: 22),
+                  ))
             ],
           ),
         ),
@@ -91,7 +127,9 @@ class _ReportFormScreenState extends State<ReportFormScreen> {
       'locationLat': point.latitude,
       'locationLong': point.longitude,
       'description': description.text,
-      'disasterType': disasterType.text
+      'disasterType': disasterType.text,
+      'phoneNumber':
+          ref.watch(authRepositoryProvider).auth.currentUser!.phoneNumber
     });
   }
 }

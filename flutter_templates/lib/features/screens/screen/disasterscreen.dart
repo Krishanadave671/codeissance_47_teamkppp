@@ -9,8 +9,6 @@ import 'package:place_picker/widgets/place_picker.dart';
 
 class DisasterScreen extends ConsumerStatefulWidget {
   static const routeName = '/disaster-screen';
-  // var _name ;
-  const DisasterScreen({super.key});
 
   @override
   ConsumerState<DisasterScreen> createState() => _DisasterScreenState();
