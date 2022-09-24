@@ -41,10 +41,16 @@ class _InfoscreenState extends State<Infoscreen> {
     return Scaffold(
       body: Column(
         children: [
+          SizedBox(
+            height: 20,
+          ),
           ListEmail(
               icon: Icon(Icons.phone, color: Colors.green),
               titleword: "Contact Department",
               subtitle: "call immediately department"),
+          SizedBox(
+            height: 20,
+          ),
           ListEmail(
               icon: Icon(
                 Icons.email,
@@ -52,12 +58,20 @@ class _InfoscreenState extends State<Infoscreen> {
               ),
               titleword: "Email Department",
               subtitle: "Email queries to department"),
+          SizedBox(
+            height: 30,
+          ),
           ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                  fixedSize: Size(150, 50), backgroundColor: Colors.red),
               onPressed: () async {
                 showPlacePicker();
                 await addGeoPoint();
               },
-              child: Text('Location'))
+              child: Text(
+                'Help',
+                style: TextStyle(fontSize: 22, color: Colors.white),
+              ))
         ],
       ),
     );

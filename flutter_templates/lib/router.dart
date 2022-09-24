@@ -5,6 +5,7 @@ import 'package:flutter_templates/features/auth/screen/login_screen.dart';
 import 'package:flutter_templates/features/auth/screen/otp_screen.dart';
 import 'package:flutter_templates/features/auth/screen/user_information_screen.dart';
 import 'package:flutter_templates/features/screens/home_page.dart';
+import 'package:flutter_templates/features/screens/homepage1.dart';
 import 'package:flutter_templates/features/screens/screen/disasterscreen.dart';
 import 'package:flutter_templates/features/screens/screen/donationscreen.dart';
 import 'package:flutter_templates/features/screens/screen/homecrimescreen.dart';
@@ -25,7 +26,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case HomeCrimeScreen.routeName:
       return MaterialPageRoute(builder: (context) => const HomeCrimeScreen());
     case DisasterScreen.routeName:
-      return MaterialPageRoute(builder: (context) => const DisasterScreen());
+      return MaterialPageRoute(builder: (context) => DisasterScreen());
     case NotificationScreen.routeName:
       return MaterialPageRoute(
           builder: (context) => const NotificationScreen());
@@ -38,7 +39,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
           builder: (context) => const UserInformationScreen());
     case HomePage.routeName:
       return MaterialPageRoute(
-        builder: (context) => const UserInformationScreen(),
+        builder: (context) => const MobileLayoutScreen(),
       );
     default:
       return MaterialPageRoute(
