@@ -11,7 +11,9 @@ import 'package:flutter_templates/features/screens/home_page.dart';
 import 'package:flutter_templates/features/screens/homepage1.dart';
 import 'package:flutter_templates/features/screens/screen/custom_marker.dart';
 import 'package:flutter_templates/features/screens/screen/disasterscreen.dart';
+import 'package:flutter_templates/features/screens/screen/donation.dart';
 import 'package:flutter_templates/features/screens/screen/google_maps.dart';
+import 'package:flutter_templates/features/screens/screen/mycredit_card.dart';
 import 'package:flutter_templates/router.dart';
 import 'firebase_options.dart';
 
@@ -38,7 +40,7 @@ class MyApp extends ConsumerWidget {
               if (user == null) {
                 return const LandingScreen();
               }
-              return const MobileLayoutScreen();
+              return GooglePay();
             },
             error: (err, trace) {
               return ErrorScreen(
