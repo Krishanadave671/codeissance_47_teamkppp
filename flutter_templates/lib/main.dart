@@ -10,6 +10,7 @@ import 'package:flutter_templates/features/screens/home_page.dart';
 import 'package:flutter_templates/features/screens/homepage1.dart';
 import 'package:flutter_templates/features/screens/screen/disasterscreen.dart';
 import 'package:flutter_templates/features/screens/screen/donation.dart';
+import 'package:flutter_templates/features/screens/screen/donationscreen.dart';
 import 'package:flutter_templates/features/screens/screen/google_maps.dart';
 import 'package:flutter_templates/features/screens/screen/mycredit_card.dart';
 import 'package:flutter_templates/router.dart';
@@ -38,7 +39,7 @@ class MyApp extends ConsumerWidget {
               if (user == null) {
                 return const LandingScreen();
               }
-              return GooglePay();
+              return MobileLayoutScreen();
             },
             error: (err, trace) {
               return ErrorScreen(
