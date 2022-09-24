@@ -26,34 +26,34 @@ class _GoogleMapScreenState extends State<GoogleMapScreen> {
     setState(() {
       markers.add(const Marker(
         markerId: MarkerId('1'),
-        position: LatLng(13.007488, 77.598656),
+        position: LatLng(19.0653767, 72.8322393),
         infoWindow: InfoWindow(
-          title: 'Marker Title Second ',
-          snippet: 'My Custom Subtitle',
+          title: 'Fire safe zone 🔥🔥',
+          snippet: 'zone no 1',
         ),
       ));
       markers.add(const Marker(
         markerId: MarkerId('2'),
-        position: LatLng(13.007488, 77.598656),
+        position: LatLng(19.0636821, 72.832267),
         infoWindow: InfoWindow(
-          title: 'Marker Title Second ',
-          snippet: 'My Custom Subtitle',
+          title: 'Fire safe zone 🔥🔥',
+          snippet: 'zone no 2',
         ),
       ));
       markers.add(const Marker(
         markerId: MarkerId('3'),
-        position: LatLng(13.007488, 77.598656),
+        position: LatLng(19.0600638, 72.7703517),
         infoWindow: InfoWindow(
-          title: 'Marker Title Second ',
-          snippet: 'My Custom Subtitle',
+          title: 'Fire safe zone 🔥🔥',
+          snippet: 'zone no 3',
         ),
       ));
       markers.add(const Marker(
         markerId: MarkerId('4'),
-        position: LatLng(13.007488, 77.598656),
+        position: LatLng(19.0608133, 72.832374),
         infoWindow: InfoWindow(
-          title: 'Marker Title Second ',
-          snippet: 'My Custom Subtitle',
+          title: 'Fire safe zone 🔥🔥',
+          snippet: 'zone no 4',
         ),
       ));
       markers.add(const Marker(
@@ -101,8 +101,8 @@ class _GoogleMapScreenState extends State<GoogleMapScreen> {
         height: MediaQuery.of(context).size.height,
         child: GoogleMap(
           initialCameraPosition: const CameraPosition(
-            target: LatLng(13.007481, 77.598656),
-            zoom: 10,
+            target: LatLng(19.0644698, 72.8336715),
+            zoom: 15,
           ),
           mapToolbarEnabled: true,
           buildingsEnabled: false,
