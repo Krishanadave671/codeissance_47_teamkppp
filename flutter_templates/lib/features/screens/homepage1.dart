@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_templates/features/screens/home_page.dart';
 import 'package:flutter_templates/features/screens/screen/cameraimage.dart';
+import 'package:flutter_templates/features/screens/screen/custom_marker.dart';
 import 'package:flutter_templates/features/screens/screen/google_maps.dart';
 
 import '../../common/utils/utils.dart';
@@ -98,7 +99,7 @@ class _MobileLayoutScreenState extends ConsumerState<MobileLayoutScreen>
         ),
         body: TabBarView(
           controller: tabBarController,
-          children: [HomePage(), ImageUploads(), GoogleMaps()],
+          children: [HomePage(), ImageUploads(), GoogleMapScreen()],
         ),
         floatingActionButton: Container(
           width: 100,
